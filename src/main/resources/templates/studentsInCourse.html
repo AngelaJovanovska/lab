@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>WP lab - Students in Course</title>
+    </head>
+    <body>
+    <header>
+    </header>
+    <h2>Choose a course:</h2>
+
+        <form th:method="POST" th:action="@{/StudentEnrollmentSummary}">
+            <select name="course" id="otherCourses">
+                    <option th:each="course: ${courses}" name="choice" th:id="${course.courseId}" th:value="${course.courseId}"></option>
+                    <th:block th:text="${course.getName()}"></th:block>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    <h1>Students in Course </h1>
+    <form>
+        <div><th:block th:text="${course.name}"></th:block></div>
+        <ul>
+            <li th:each="student: ${students}"> <th:block th:text="${student.name}"></th:block> <th:block th:text="${student.surname}"></th:block>(<th:block th:text="${student.username}"></th:block>)</li>
+        </ul>
+        <a href="/listCourses">Back</a>
+    </form>
+
+    </body>
+</html>
