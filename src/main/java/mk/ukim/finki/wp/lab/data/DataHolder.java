@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.lab.data;
 
 import mk.ukim.finki.wp.lab.model.Course;
 import mk.ukim.finki.wp.lab.model.Student;
+import mk.ukim.finki.wp.lab.model.Teacher;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,7 @@ import java.util.List;
 public class DataHolder {
     public static List<Course> courseList = new ArrayList<>();
     public static List<Student> students = new ArrayList<>();
+    public static List<Teacher> teachers = new ArrayList<>();
 
     @PostConstruct
     public void init() {
@@ -27,11 +29,17 @@ public class DataHolder {
         students.add(s4);
         students.add(s5);
 
-        courseList.add(new Course(1L, "Veb Programiranje", "Voved vo veb"));
-        courseList.add(new Course(2L, "Operativni Sistemi", "Voved vo veb"));
-        courseList.add(new Course(3L, "Softversko Inzenerstvo", "Voved vo veb"));
-        courseList.add(new Course(4L, "Diskretna Matematika", "Voved vo veb"));
-        courseList.add(new Course(5L, "Mobilni informaciski sistemi", "Voved vo veb"));
+        Teacher t1 = new Teacher( "Marko", "Markovski");
+        Teacher t2 = new Teacher( "Todor", "Todorovski");
+        Teacher t3 = new Teacher(  "Bojan", "Bojanovski");
+        Teacher t4 = new Teacher(  "Jovana", "Jovanovska");
+        Teacher t5 = new Teacher(  "Sara", "Sarovska");
+
+        courseList.add(new Course( "Veb Programiranje", "Voved vo veb",t1));
+        courseList.add(new Course( "Operativni Sistemi", "Voved vo veb", t2));
+        courseList.add(new Course( "Softversko Inzenerstvo", "Voved vo veb", t3));
+        courseList.add(new Course( "Diskretna Matematika", "Voved vo veb", t4));
+        courseList.add(new Course( "Mobilni informaciski sistemi", "Voved vo veb", t5));
 
         courseList.get(0).getStudents().add(s1);
         courseList.get(0).getStudents().add(s2);
@@ -51,6 +59,15 @@ public class DataHolder {
 
 
         courseList.get(4).getStudents().add(s5);
+
+
+
+        teachers.add(t1);
+        teachers.add(t2);
+        teachers.add(t3);
+        teachers.add(t4);
+        teachers.add(t5);
+
 
 //        courseList.get(0).setStudents(students.subList(0, 3));
 //        courseList.get(1).setStudents(students.subList(2, 3));

@@ -38,7 +38,6 @@ public class StudentEnrollmentSummary extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String choice = (String) req.getSession().getAttribute("choice");
         resp.sendRedirect("/listCourses");
     }
 

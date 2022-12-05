@@ -3,30 +3,40 @@
     <meta charset="utf-8">
     <title>Welcome and Choose a Course</title>
     <style type="text/css">
-      body {
-        width: 800px;
-        margin: auto;
-      }
+        body {
+            width: 800px;
+            margin: auto;
+        }
     </style>
-  </head>
-  <body>
-  <header>
+</head>
+<body>
+<main>
+
     <h1>Courses List</h1>
-  </header>
-      <main>
-        <h2>Choose course:</h2>
-        <form th:method="POST" th:action="@{/listCourses}">
-            <div th:each="course: ${courses}">
-                <input th:id="${course.courseId}" type="radio" name="courseId" th:value="${course.courseId}">
-                <label th:for="${course.courseId}"th:text="${course.name}"></label>
-            </div>
 
-            <button type="submit">Submit</button>
-        </form>
+    <br/>
+    <h2>Choose course:</h2>
+    <form th:method="POST" th:action="@{/courses}" id="chose">
+        <div th:each="course, iter : ${courses}">
+            <input th:checked="${iter.index == 0}" th:id="${course.courseId}" type="radio" name="courseId" th:value="${course.courseId}">
+            <label th:for="${course.courseId}" th:text="${course.name}"></label>
+            <!--                  <form th:action="@{'/courses/delete/{id}' (id=${course.getCourseId()})}" th:method="post">-->
+        </div>
 
+            <button type="submit" value="delete" name="delete" class="btn btn-sm btn-danger" form="chose"><i
+                    class="fa fa-trash">Delete</i></button>
 
+            <button type="submit" value="edit" name="edit" class="btn btn-sm btn-info">
+                <i class="fa fa-trash">Edit</i></button>
+<!--        <a th:href="@{'/courses/edit-form/{id}' (id=${course.getCourseId()})}" th:method="post">Edit</a>-->
         <br/>
+            <input type="submit" value="submit" name="submit" form="chose">
+        <a th:href="@{'/courses/add-form'}" th:method="post">Add course</a>
+    </form>
+    <div>
 
-      </main>
-  </body>
+    </div>
+
+</main>
+</body>
 </html>

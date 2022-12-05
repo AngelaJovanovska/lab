@@ -28,9 +28,11 @@ public class courseFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         Long courseId = (Long) request.getSession().getAttribute("courseId");
-        String path =request.getServletPath();
-        if(!"/listCourses".equals(path) && courseId ==null){
-            response.sendRedirect("/listCourses");
+//        String path =request.getServletPath();!"/courses".equals(path)
+
+//                contains("/courses") && request.getSession().getAttribute("courseId") == null){
+        if(!request.getServletPath().startsWith("/courses") && courseId == null){
+            response.sendRedirect("/courses");
         }else{
             filterChain.doFilter(servletRequest,servletResponse);
         }
